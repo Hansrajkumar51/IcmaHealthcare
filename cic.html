@@ -162,6 +162,50 @@
 			<!--/ End Header Inner -->
 		</header>
 		<!-- End Header Area -->
+		 <!-- Registration Form Section -->
+    <section id="registration" class="py-5">
+    <div class="container">
+		<h1 class="text-center mb-2">Join ICMA Healthcare Training Today 🚀</h1>
+        <p class="text-center text-muted mb-4">Begin your journey towards a successful career in healthcare coding.</p>
+        <h2 class="text-center mb-4">Student Registration</h2>
+        <form id="studentForm" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6 mb-3"><label>First Name</label><input type="text" class="form-control" name="first_name" required></div>
+                <div class="col-md-6 mb-3"><label>Last Name</label><input type="text" class="form-control" name="last_name" required></div>
+                <div class="col-md-6 mb-3"><label>Email</label><input type="email" class="form-control" name="email" required></div>
+                <div class="col-md-6 mb-3"><label>Phone</label><input type="tel" class="form-control" name="phone" required></div>
+                <div class="col-md-6 mb-3"><label>Education</label><input type="text" class="form-control" name="education" required></div>
+                <div class="col-md-6 mb-3"><label>Graduation Year</label><input type="number" class="form-control" name="grad_year" min="1900" max="2099" required></div>
+                <div class="col-md-6 mb-3"><label>Field</label><input type="text" class="form-control" name="field" required></div>
+                <div class="col-md-6 mb-3"><label>Experience</label><input type="text" class="form-control" name="experience"></div>
+                <div class="col-md-6 mb-3">
+                    <label>Interested Exam</label>
+                    <select class="form-control" name="interest_exam" required>
+                        <option value="CIC">CIC</option>
+                    </select>
+                </div>
+                <div class="col-md-12 mb-3"><label>Description</label><textarea class="form-control" name="description" rows="3"></textarea></div>
+                <div class="col-md-6 mb-3"><label>Aadhaar Front</label><input type="file" class="form-control" name="aadhaar_front" accept="image/*" required></div>
+                <div class="col-md-6 mb-3"><label>Aadhaar Back</label><input type="file" class="form-control" name="aadhaar_back" accept="image/*" required></div>
+                <div class="col-md-6 mb-3"><label>PAN Front</label><input type="file" class="form-control" name="pan_front" accept="image/*" required></div>
+                <div class="col-md-6 mb-3"><label>PAN Back</label><input type="file" class="form-control" name="pan_back" accept="image/*" required></div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary px-4">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Success Popup -->
+<div id="successPopup" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content text-center p-4">
+      <h4 class="mb-3">🎉 Form Submitted Successfully!</h4>
+      <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+    </div>
+  </div>
+</div>
 		
 		<!-- Footer Area -->
 		<footer id="footer" class="footer ">
@@ -287,5 +331,21 @@
 		<script src="js/bootstrap.min.js"></script>
 		<!-- Main JS -->
 		<script src="js/main.js"></script>
+		<script>
+document.getElementById("studentForm").addEventListener("submit", function(e){
+    e.preventDefault();  // Stop form reload
+
+    // Collect form data (if you want to send it somewhere)
+    const formData = new FormData(this);
+
+    // TODO: Send to server here using fetch()
+
+    // Show success modal
+    $("#successPopup").modal("show");
+
+    // Reset form
+    this.reset();
+});
+</script>
     </body>
 </html>
