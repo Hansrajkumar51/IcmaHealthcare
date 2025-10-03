@@ -7,8 +7,8 @@ $(document).ready(function(){
 	var map;
 	map = new GMaps({
 		el: '#myMap',
-		lat: 51.507351,
-		lng: -0.127758,
+		lat: 28.69921640290106,
+		lng: 77.11514327116413,
 		scrollwheel:false,
 		zoom: 15,
 		zoomControl : false,
@@ -21,13 +21,17 @@ $(document).ready(function(){
 
 	var image = 'img/map-marker.png';
 	map.addMarker({
-		lat: 51.507351,
-		lng: -0.127758,
+		lat: 28.69921640290106,
+		lng: 77.11514327116413,
 		icon: image,
 		animation: google.maps.Animation.DROP,
 		verticalAlign: 'bottom',
 		horizontalAlign: 'left',
 		backgroundColor: '#efece0',
+		click: function() {
+        // Open Google Maps at your location
+        window.open("https://www.google.com/maps?q=28.69921640290106,77.11514327116413", "_blank");
+    }
 	});
 
 	var styles = [
