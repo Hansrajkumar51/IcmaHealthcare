@@ -41,6 +41,296 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="css/responsive.css">
+
+		<!-- Fonts & CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+        body { font-family: 'Poppins', sans-serif; background: #fff; }
+
+        /* Summary Row */
+       .summary-box {
+         background: #fff;
+         border-radius: 10px;
+         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         min-height: 180px;
+        }
+        .summary-box:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+        .summary-box h3 {
+         font-size: 2rem;
+         font-weight: 700;
+         color: #007BFF;
+        }
+        .summary-box p {
+         font-size: 1rem;
+         color: #555;
+        }
+        .stars i {
+         font-size: 1.2rem;
+        }
+
+        /* Review Slider */
+       .review-slider {
+         background: #f8fafc;
+        }
+        .review-slide {
+         max-width: 600px;
+         margin: 0 auto;
+        }
+        .review-slide img {
+         width: 90px;
+         height: 90px;
+         border-radius: 50%;
+         margin-bottom: 15px;
+         border: 3px solid #0077b6;
+        }
+        .review-slide h5 {
+         font-weight: 600;
+         margin-bottom: 5px;
+        }
+        .review-slide p {
+         font-style: italic;
+         color: #555;
+        }
+        .stars {
+         color: #ffb400;
+         margin-bottom: 15px;
+        }
+
+        /* Remove Bootstrap default background icons */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+         background-image: none !important;
+         background: none !important;
+        }
+
+        /* Custom Controls */
+        .custom-control {
+         background: #0077b6;
+         border-radius: 50%;
+         width: 40px;
+         height: 40px;
+         top: 50%;
+         transform: translateY(-50%);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         opacity: 0.9;
+         transition: 0.3s;
+         border: none;
+        }
+        .custom-control span {
+         color: #fff;
+         font-size: 18px;
+         line-height: 1;
+         font-weight: bold;
+        }
+        .custom-control:hover {
+         background: #005f87;
+         opacity: 1;
+        }
+        /* Positioning */
+        .carousel-control-prev { left: -60px; }
+        .carousel-control-next { right: -60px; }
+        @media (max-width: 768px){
+         .carousel-control-prev { left: 10px; }
+         .carousel-control-next { right: 10px; }
+        }
+
+        /* Filter css */
+        .filter-section {
+         background-color: #f8fafc;
+        }
+        .filter-label {
+         font-size: 0.9rem;
+         color: #333;
+         letter-spacing: 0.05em;
+        }
+        .filter-select {
+         min-width: 180px;
+         padding: 8px 12px;
+         border-radius: 6px;
+         border: 1px solid #ddd;
+         font-size: 1rem;
+         box-shadow: none;
+         transition: border-color 0.3s ease;
+        }
+        .filter-select:focus {
+         outline: none;
+         border-color: #007bff;
+         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        .filter-controls {
+         gap: 2rem;
+         flex-wrap: wrap;
+         justify-content: center;
+        }
+        .filter-group {
+         display: flex;
+         flex-direction: column;
+         align-items: flex-start;
+        }
+        @media (max-width: 576px) {
+         .filter-group {
+           width: 100%;
+           margin-bottom: 1rem;
+         }
+        }
+
+        /* Reviews Grid */
+        .review-card {
+         background: #fff;
+         border-radius: 12px;
+         padding: 25px 20px;
+         box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+         margin-bottom: 30px;
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .review-card:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        }
+        .reviewer {
+         display: flex;
+         align-items: center;
+         margin-bottom: 15px;
+        }
+        .reviewer img {
+         width: 55px;
+         height: 55px;
+         border-radius: 50%;
+         margin-right: 15px;
+         object-fit: cover;
+         border: 2px solid #0077b6;
+        }
+        .reviewer h6 {
+         margin: 0;
+         font-weight: 600;
+         font-size: 16px;
+         color: #333;
+         display: flex;
+         align-items: center;
+        }
+        .reviewer .verified-badge {
+         background: #007bff;
+         color: white;
+         font-size: 12px;
+         font-weight: 600;
+         padding: 2px 6px;
+         border-radius: 10px;
+         margin-left: 8px;
+        }
+        .reviewer span {
+         font-size: 13px;
+         color: #777;
+        }
+        .stars {
+         color: #f4c430;
+         font-size: 15px;
+         margin-bottom: 10px;
+        }
+        .review-text {
+         font-size: 15px;
+         color: #444;
+         line-height: 1.6;
+        }
+        /* Helpful buttons */
+        .review-actions button {
+         font-size: 0.8rem;
+         margin-right: 8px;
+        }
+        /* IMCA replies */
+        .imca-reply {
+         font-size: 0.9rem;
+         color: #333;
+         background: #f9f9f9;
+         padding: 10px 15px;
+         border-radius: 8px;
+         margin-top: 15px;
+         box-shadow: inset 0 0 5px #ccc;
+        }
+
+        /* View More */
+        .view-more {
+         display: block;
+         margin: 30px auto;
+         padding: 10px 30px;
+         background: #007bff;
+         color: #fff;
+         border: none;
+         border-radius: 6px;
+         font-weight: 500;
+         transition: 0.3s;
+        }
+        .view-more:hover { background: #0056b3; }
+
+        /* Sticky Write Review Button */
+        .sticky-review-btn {
+          position: fixed;
+          right: 20px;
+          bottom: 30px;
+          z-index: 1050;
+          border-radius: 50px;
+          padding: 12px 24px;
+          font-weight: 600;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+        }
+
+        /* Rating Distribution Bars */
+        .rating-bar {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 10px;
+          font-weight: 600;
+        }
+
+        .rating-bar span:first-child {
+          width: 70px;
+          text-align: left;
+        }
+
+        .rating-bar .bar {
+          flex-grow: 1;
+          height: 15px;
+          background: #ddd;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+
+        .rating-bar .fill {
+          height: 100%;
+          background: #007bff;
+          border-radius: 10px 0 0 10px;
+        }
+/* why choose imca  */
+		.why-choose-imca i,
+.quick-stats h3 {
+  color: #007bff;
+}
+
+.why-choose-imca h5,
+.quick-stats p {
+  font-weight: 600;
+}
+
+.why-choose-imca p,
+.quick-stats p {
+  color: #555;
+  margin-top: 0.5rem;
+}
+    </style>
 		
     </head>
     <body>
@@ -61,22 +351,6 @@
         </div>
         <!-- End Preloader -->
 		
-		<!-- Get Pro Button
-		<ul class="pro-features">
-			<a class="get-pro" href="#">Get Pro</a>
-			<li class="big-title">Pro Version Available on Themeforest</li>
-			<li class="title">Pro Version Features</li>
-			<li>2+ premade home pages</li>
-			<li>20+ html pages</li>
-			<li>Color Plate With 12+ Colors</li>
-			<li>Sticky Header / Sticky Filters</li>
-			<li>Working Contact Form With Google Map</li>
-			<div class="button">
-				<a href="http://preview.themeforest.net/item/mediplus-medical-and-doctor-html-template/full_screen_preview/26665910?_ga=2.145092285.888558928.1591971968-344530658.1588061879" target="_blank" class="btn">Pro Version Demo</a>
-				<a href="https://themeforest.net/item/mediplus-medical-and-doctor-html-template/26665910" target="_blank" class="btn">Buy Pro Version</a>
-			</div>
-		</ul>
-	     -->
 	     
 		<!-- Header Area -->
 		<header class="header" >
@@ -162,6 +436,373 @@
 			<!--/ End Header Inner -->
 		</header>
 		<!-- End Header Area -->
+  <!-- top section  -->
+       <section class="why-choose-imca py-5 bg-light">
+  <div class="container text-center">
+    <!-- Logo above title -->
+    <img src="img/logo.png" alt="IMCA Healthcare Logo" style="height: 65px; margin-bottom: 1rem;">
+    <h2 class="mb-4">Why Choose IMCA Healthcare?</h2>
+    <div class="row justify-content-center g-4">
+      <div class="col-md-4">
+        <i class="fa fa-graduation-cap fa-3x text-primary mb-3"></i>
+        <h5>Expert Faculty</h5>
+        <p>Learn from industry professionals with years of healthcare experience.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="fa fa-cogs fa-3x text-primary mb-3"></i>
+        <h5>Practical Courses</h5>
+        <p>Hands-on training and real-world case studies to prepare for success.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="fa fa-globe fa-3x text-primary mb-3"></i>
+        <h5>Global Recognition</h5>
+        <p>Our certifications are recognized by healthcare professionals worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Video/Testimonial Spotlight -->
+<section class="testimonial-video py-5">
+  <div class="container text-center">
+    <h2 class="mb-4">Hear From Our Students</h2>
+    <div class="ratio ratio-16x9 mx-auto" style="max-width: 700px;">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Student Testimonial Video" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Stats / Milestones -->
+<section class="quick-stats py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="mb-4">Our Achievements</h2>
+    <div class="row justify-content-center g-4">
+      <div class="col-md-3">
+        <h3 class="text-primary">1500+</h3>
+        <p>Students Certified</p>
+      </div>
+      <div class="col-md-3">
+        <h3 class="text-primary">10+</h3>
+        <p>Years of Excellence</p>
+      </div>
+      <div class="col-md-3">
+        <h3 class="text-primary">5000+</h3>
+        <p>Courses Delivered</p>
+      </div>
+      <div class="col-md-3">
+        <h3 class="text-primary">98%</h3>
+        <p>Student Satisfaction Rate</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        <!-- Summary Row -->
+    <section class="summary-row py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4 d-flex">
+            <div class="summary-box text-center p-4 w-100">
+              <h3 class="mb-2">4.8 / 5</h3>
+              <div class="stars mb-2">
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star-half-o text-warning"></i>
+              </div>
+              <p class="mb-0">Average Student Rating</p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="summary-box text-center p-4 w-100">
+              <h3 class="mb-2">1000+</h3>
+              <div class="stars mb-2">
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+              </div>
+              <p class="mb-0">5-Star Reviews</p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="summary-box text-center p-4 w-100">
+              <h3 class="mb-2">Trusted</h3>
+              <i class="fa fa-users fa-2x text-primary mb-2"></i>
+              <p class="mb-0">By Healthcare Professionals Worldwide</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Review Highlights and Rating Distribution -->
+    <section class="review-summary py-5">
+      <div class="container">
+        <div class="row text-center mb-4">
+          <h2>What Students Are Saying</h2>
+          <p class="lead">Trusted by thousands of students worldwide</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+
+          <!-- Review Highlights -->
+          <div class="col-md-4">
+            <div class="summary-box p-4 shadow-sm rounded">
+              <h3>95%</h3>
+              <p>Students recommend our courses</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="summary-box p-4 shadow-sm rounded">
+              <h3>89%</h3>
+              <p>Say faculty support is excellent</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="summary-box p-4 shadow-sm rounded">
+              <h3>1000+</h3>
+              <p>5-Star Reviews</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rating Distribution -->
+        <div class="row mt-5 justify-content-center">
+          <div class="col-md-6">
+
+            <h4>Rating Distribution</h4>
+            <div class="rating-bar">
+              <span>5 Stars</span>
+              <div class="bar"><div class="fill" style="width: 80%;"></div></div>
+              <span>80%</span>
+            </div>
+            <div class="rating-bar">
+              <span>4 Stars</span>
+              <div class="bar"><div class="fill" style="width: 12%;"></div></div>
+              <span>12%</span>
+            </div>
+            <div class="rating-bar">
+              <span>3 Stars</span>
+              <div class="bar"><div class="fill" style="width: 5%;"></div></div>
+              <span>5%</span>
+            </div>
+            <div class="rating-bar">
+              <span>2 Stars</span>
+              <div class="bar"><div class="fill" style="width: 2%;"></div></div>
+              <span>2%</span>
+            </div>
+            <div class="rating-bar">
+              <span>1 Star</span>
+              <div class="bar"><div class="fill" style="width: 1%;"></div></div>
+              <span>1%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Review Slider -->
+    <section class="review-slider py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">Top Student Experiences</h2>
+        <div id="carouselReviews" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+              <div class="review-slide text-center">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                <h5>Priya Sharma</h5>
+                <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p>“IMCA Healthcare gave me the best foundation in CCS. The faculty support was excellent and I cleared my exam confidently.”</p>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="review-slide text-center">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                <h5>Rahul Mehta</h5>
+                <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p>“CPC training was well structured. The real-life case studies were very helpful. Thank you IMCA!”</p>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="review-slide text-center">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+                <h5>Ananya Gupta</h5>
+                <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p>“I loved the IPDRG course. Very practical and easy to apply in real scenarios. Highly recommended.”</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sleek Carousel Controls -->
+           <button class="carousel-control-prev custom-control" type="button" data-target="#carouselReviews" data-slide="prev">
+              <span>&lt;</span>
+              </button>
+
+             <button class="carousel-control-next custom-control" type="button" data-target="#carouselReviews" data-slide="next">
+             <span>&gt;</span>
+             </button>
+
+        </div>
+      </div>
+    </section>
+
+
+	<!-- filter section  -->
+    <section class="filter-section py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="filter-controls d-flex flex-wrap justify-content-center align-items-center gap-4">
+          <!-- Course Filter -->
+          <div class="filter-group d-flex flex-column align-items-start">
+            <label for="filterCourse" class="filter-label fw-semibold mb-2">Course</label>
+            <select id="filterCourse" class="filter-select form-select shadow-sm">
+              <option value="all">All Courses</option>
+              <option value="ccs">CCS</option>
+              <option value="cpc">CPC</option>
+              <option value="crc">CRC</option>
+              <option value="ipdrg">IPDRG</option>
+              <option value="bmct">BMCT</option>
+            </select>
+          </div>
+          <!-- Year Filter -->
+          <div class="filter-group d-flex flex-column align-items-start">
+            <label for="filterYear" class="filter-label fw-semibold mb-2">Year</label>
+            <select id="filterYear" class="filter-select form-select shadow-sm">
+              <option value="all">All Years</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+            </select>
+          </div>
+          <!-- Professional Role Filter -->
+          <div class="filter-group d-flex flex-column align-items-start">
+            <label for="filterRole" class="filter-label fw-semibold mb-2">Role</label>
+            <select id="filterRole" class="filter-select form-select shadow-sm">
+              <option value="all">All Roles</option>
+              <option value="student">Student</option>
+              <option value="professional">Professional</option>
+              <option value="faculty">Faculty</option>
+            </select>
+          </div>
+          <!-- Star Rating Filter -->
+          <div class="filter-group d-flex flex-column align-items-start">
+            <label for="filterStars" class="filter-label fw-semibold mb-2">Star Rating</label>
+            <select id="filterStars" class="filter-select form-select shadow-sm">
+              <option value="all">All</option>
+              <option value="5">5 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="2">2 Stars</option>
+              <option value="1">1 Star</option>
+            </select>
+          </div>
+          <!-- Write a Review Button -->
+          <button id="stickyReviewBtn" class="btn btn-primary">Write a Review</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Reviews Grid -->
+    <section class="reviews-section">
+      <div class="container">
+        <div class="row" id="reviewsList">
+
+          <!-- Example Review -->
+          <div class="col-md-6">
+            <div class="review-card">
+              <div class="reviewer">
+                <img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Reviewer photo">
+                <div>
+                  <h6>Neha Verma <span class="verified-badge">Verified</span></h6>
+                  <span>CCS Student</span>
+                </div>
+              </div>
+              <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+              <p class="review-text">Best decision to join IMCA Healthcare! Excellent CCS training with lots of practice material.</p>
+              <div class="review-actions">
+                <button class="btn btn-sm btn-outline-primary me-2" onclick="incrementHelpful(this)">Helpful <span class="helpful-count">0</span></button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="incrementNotHelpful(this)">Not Helpful <span class="not-helpful-count">0</span></button>
+              </div>
+              <div class="imca-reply mt-3">
+                <strong>IMCA Response:</strong>
+                <p>Thank you, Neha! We are glad you found our CCS course helpful.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Another Review -->
+          <div class="col-md-6">
+            <div class="review-card">
+              <div class="reviewer">
+                <img src="https://randomuser.me/api/portraits/men/27.jpg" alt="Reviewer photo">
+                <div>
+                  <h6>Arjun Patel <span class="verified-badge">Verified</span></h6>
+                  <span>CRC Student</span>
+                </div>
+              </div>
+              <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div>
+              <p class="review-text">Great learning experience, CRC training boosted my confidence for job applications.</p>
+              <div class="review-actions">
+                <button class="btn btn-sm btn-outline-primary me-2" onclick="incrementHelpful(this)">Helpful <span class="helpful-count">0</span></button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="incrementNotHelpful(this)">Not Helpful <span class="not-helpful-count">0</span></button>
+              </div>
+              <div class="imca-reply mt-3">
+                <strong>IMCA Response:</strong>
+                <p>We appreciate your feedback, Arjun! Keep up the great work.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- More reviews hidden initially -->
+          <div class="col-md-6 d-none extra-review">
+            <div class="review-card">
+              <div class="reviewer">
+                <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="">
+                <div>
+                  <h6>Simran Kaur <span class="verified-badge">Verified</span></h6>
+                  <span>CPC Student</span>
+                </div>
+              </div>
+              <div class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+              <p class="review-text">CPC course helped me get certified in one go. The mock tests were super useful!</p>
+              <div class="review-actions">
+                <button class="btn btn-sm btn-outline-primary me-2" onclick="incrementHelpful(this)">Helpful <span class="helpful-count">0</span></button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="incrementNotHelpful(this)">Not Helpful <span class="not-helpful-count">0</span></button>
+              </div>
+              <div class="imca-reply mt-3">
+                <strong>IMCA Response:</strong>
+                <p>Thank you for your kind words, Simran! Glad to support your certification journey.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button class="view-more" id="viewMoreBtn">View More Reviews</button>
+      </div>
+    </section>
 		
 		<!-- Footer Area -->
 		<footer id="footer" class="footer ">
@@ -287,5 +928,40 @@
 		<script src="js/bootstrap.min.js"></script>
 		<!-- Main JS -->
 		<script src="js/main.js"></script>
+		<script>
+      // View More Functionality
+      document.getElementById("viewMoreBtn").addEventListener("click", function(){
+        document.querySelectorAll(".extra-review").forEach(el => el.classList.remove("d-none"));
+        this.style.display = "none";
+      });
+
+      // Helpful Button functionality
+      function incrementHelpful(btn) {
+        let countSpan = btn.querySelector('.helpful-count');
+        countSpan.textContent = parseInt(countSpan.textContent) + 1;
+        btn.disabled = true;
+      }
+
+      function incrementNotHelpful(btn) {
+        let countSpan = btn.querySelector('.not-helpful-count');
+        countSpan.textContent = parseInt(countSpan.textContent) + 1;
+        btn.disabled = true;
+      }
+
+      // Sticky Write Review Button and Modal
+      document.getElementById('stickyReviewBtn').addEventListener('click', () => {
+        const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
+        reviewModal.show();
+      });
+
+      // Review submission form
+      document.getElementById('reviewForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        alert('Thank you for your review! It will be published shortly.');
+        const modal = bootstrap.Modal.getInstance(document.getElementById('reviewModal'));
+        modal.hide();
+        this.reset();
+      });
+    </script>
     </body>
 </html>
