@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>IMCA Admin — Professional UI</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<style>
+  /* ---------------- Root tokens ---------------- */
+  :root{
+    --bg:#f4f6f8;
+    --card:#ffffff;
+    --brand-1:#0d6efd;
+    --brand-2:#0a58ca;
+    --glass: rgba(255,255,255,0.6);
+    --muted:#6b7280;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --warning:#f59e0b;
+    --radius:12px;
+    --shadow: 0 10px 30px rgba(2,6,23,0.08);
+    --mono: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:var(--mono);
+    margin:0;
+    min-height:100vh;
+    background: linear-gradient(180deg,#f6f8fb,#eef3f9);
+    color:#0f172a;
+    display:flex;
+    gap:18px;
+    padding:18px;
+  }
+
+  /* ---------------- Sidebar ---------------- */
+  aside.sidebar{
+    width:260px;
+    background: linear-gradient(180deg,var(--brand-1),var(--brand-2));
+    color:#fff;
+    border-radius:14px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition: width .26s ease, box-shadow .18s;
+    box-shadow:var(--shadow);
+  }
+  aside.sidebar.collapsed{ width:76px; }
+  .logo{ display:flex; align-items:center; gap:12px; }
+  .logo img{ height:40px; width:auto; border-radius:6px; background:#fff; padding:4px; }
+  .logo .brand{ font-weight:800; font-size:18px; letter-spacing:0.4px; }
+  .sidebar.collapsed .brand{ display:none; }
+  nav.nav{ display:flex; flex-direction:column; gap:8px; margin-top:8px; flex:1; }
+  .nav-item{
+    display:flex; gap:12px; align-items:center; padding:12px; border-radius:10px;
+    cursor:pointer; transition: background .12s, transform .06s;
+    white-space:nowrap; overflow:hidden;
+  }
+  .nav-item i{ width:20px; text-align:center; font-size:16px }
+  .nav-item span{ font-weight:600; }
+  .nav-item:hover{ background: rgba(255,255,255,0.08); transform: translateY(-1px) }
+  .nav-item.active{ background: rgba(255,255,255,0.12); }
+
+  .sidebar-footer{ display:flex; justify-content:center; color:rgba(255,255,255,0.9); font-size:13px; }
+
+  /* Tooltip for collapsed sidebar */
+  .nav-item .tooltip{
+    display:none;
+    position:absolute;
+    left:86px;
+    background:#fff;
+    color:#111;
+    padding:6px 8px;
+    border-radius:6px;
+    box-shadow:0 8px 24px rgba(2,6,23,0.12);
+    font-size:13px;
+    transform: translateY(-50%);
+    white-space:nowrap;
+    z-index:40;
+  }
+  aside.sidebar.collapsed .nav-item{ position:relative; }
+  aside.sidebar.collapsed .nav-item:hover .tooltip{ display:block; }
+
+  /* ---------------- Main app ---------------- */
+  main.app{ flex:1; display:flex; flex-direction:column; gap:16px; min-width:0; }
+
+  /* Topbar */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .left{
+    display:flex; align-items:center; gap:12px;
+  }
+  .burger{
+    width:46px; height:46px; border-radius:10px; background:var(--card);
+    display:grid; place-items:center; cursor:pointer; box-shadow:0 6px 18px rgba(2,6,23,0.05); border:1px solid rgba(2,6,23,0.04);
+  }
+  .page-title h1{ font-size:20px; margin:0; font-weight:800; }
+  .page-title p{ margin:2px 0 0; color:var(--muted); font-size:13px; }
+
+  .right{
+    display:flex; align-items:center; gap:10px;
+  }
+  .icon-btn{
+    position:relative;
+    width:44px; height:44px; border-radius:10px; background:var(--card); display:grid; place-items:center; cursor:pointer;
+    box-shadow:0 6px 18px rgba(2,6,23,0.05); border:1px solid rgba(2,6,23,0.04);
+  }
+  .profile{
+    display:flex; align-items:center; gap:8px; padding:6px 10px; background:var(--card); border-radius:10px; cursor:pointer; border:1px solid rgba(2,6,23,0.04)
+  }
+  .profile img{ width:36px; height:36px; border-radius:999px; object-fit:cover; }
+
+  /* ---------------- Filters (glass card) ---------------- */
+  .filters{
+    display:flex; gap:12px; align-items:center; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.95)); padding:12px; border-radius:12px;
+    box-shadow:0 8px 28px rgba(2,6,23,0.06); border:1px solid rgba(2,6,23,0.04);
+    flex-wrap:wrap;
+  }
+  .filter{
+    display:flex; align-items:center; gap:8px; min-width:170px; padding:8px 10px; border-radius:10px; background:transparent; border:1px solid rgba(2,6,23,0.04)
+  }
+  .filter i{ color:var(--muted); width:18px; text-align:center }
+  .filter select, .filter input{ border:0; background:transparent; outline:0; font-size:14px; color:#111; }
+  .filters .actions{ margin-left:auto; display:flex; gap:8px; align-items:center }
+  .btn.primary{ background:linear-gradient(90deg,var(--brand-1),var(--brand-2)); color:#fff; padding:9px 12px; border-radius:10px; border:0; cursor:pointer; font-weight:700 }
+  .btn.ghost{ padding:8px 10px; border-radius:10px; background:transparent; border:1px solid rgba(2,6,23,0.06); cursor:pointer }
+
+  /* ---------------- Table card ---------------- */
+  .card{ background:var(--card); border-radius:var(--radius); padding:12px; box-shadow:var(--shadow); }
+  .table-wrap{ overflow:auto; border-radius:10px; }
+  table{ width:100%; border-collapse:collapse; min-width:900px; }
+  thead th{ position:sticky; top:0; padding:12px 14px; background:linear-gradient(90deg,var(--brand-1),var(--brand-2)); color:#fff; text-align:left; font-weight:800; }
+  tbody td{ padding:12px 14px; border-bottom:1px solid rgba(2,6,23,0.04); vertical-align:middle }
+  tbody tr{ transition: background .12s; }
+  tbody tr:hover{ background:linear-gradient(90deg, rgba(13,110,253,0.03), rgba(13,110,253,0.01)) }
+  .col-check{ width:46px }
+  .col-more{ width:72px; text-align:center }
+
+  /* Candidate name cell */
+  .cand{
+    display:flex; gap:12px; align-items:center;
+  }
+  .avatar{
+    width:44px; height:44px; border-radius:8px; display:grid; place-items:center; font-weight:800; color:var(--brand-1);
+    background:linear-gradient(90deg,#dbeafe,#e0f2fe);
+  }
+  .meta{ color:var(--muted); font-size:13px }
+
+  /* status badges */
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:13px;
+  }
+  .badge.pending{ background: rgba(245,158,11,0.10); color:var(--warning) }
+  .badge.approved{ background: rgba(22,163,74,0.08); color:var(--success) }
+  .badge.rejected{ background: rgba(220,38,38,0.08); color:var(--danger) }
+
+  /* no-data placeholder */
+  .no-data{ padding:30px; text-align:center; color:var(--muted) }
+
+  /* ---------------- Modal (two-tab) ---------------- */
+  .modal{
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(2,6,23,0.45); z-index:60; padding:24px;
+  }
+  .modal.show{ display:flex; animation: fadeIn .16s ease both; }
+  @keyframes fadeIn{ from { opacity:0; transform: translateY(6px);} to { opacity:1; transform:none; } }
+
+  .modal-inner{ width:100%; max-width:980px; background:var(--card); border-radius:14px; padding:16px; display:flex; gap:18px; box-shadow:0 30px 80px rgba(2,6,23,0.3) }
+  .modal-left{ flex:1; min-width:0 }
+  .modal-right{ width:320px; display:flex; flex-direction:column; gap:12px }
+
+  .card-section{ background:linear-gradient(180deg,#fff,#fbfbfd); padding:14px; border-radius:10px; border:1px solid rgba(2,6,23,0.04) }
+  .card-title{ font-weight:800; margin-bottom:10px }
+  .field{ display:flex; justify-content:space-between; padding:8px 6px; border-bottom:1px dashed rgba(2,6,23,0.04) }
+  .field:last-child{ border-bottom:0 }
+  .field .label{ color:var(--muted); font-size:13px }
+  .field .value{ font-weight:700 }
+
+  .doc-row{ display:flex; gap:10px; align-items:center; }
+  .doc-thumb{ width:64px; height:60px; border-radius:8px; display:grid; place-items:center; background:linear-gradient(90deg,#e6f5ff,#eaf8ff); color:var(--muted); font-weight:700; border:1px solid rgba(2,6,23,0.03) }
+
+  .actions{ display:flex; flex-direction:column; gap:8px }
+  .actions .action{ padding:10px 12px; border-radius:10px; border:0; font-weight:700; cursor:pointer }
+  .action.edit{ background: #06b6d4; color:#fff }
+  .action.approve{ background: linear-gradient(90deg,#10b981,#059669); color:#fff }
+  .action.reject{ background: linear-gradient(90deg,#ef4444,#dc2626); color:#fff }
+  .action.export{ background: linear-gradient(90deg,var(--brand-1),var(--brand-2)); color:#fff }
+
+  /* modal tabs */
+  .tabs{ display:flex; gap:8px; margin-bottom:12px }
+  .tab{ padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700; background:transparent; border:1px solid rgba(2,6,23,0.04) }
+  .tab.active{ background: linear-gradient(90deg,var(--brand-1),var(--brand-2)); color:#fff; border:0 }
+
+  /* responsive */
+  @media (max-width:990px){
+    aside.sidebar{ display:none }
+    .modal-inner{ flex-direction:column }
+    .modal-right{ width:100% }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="logo">
+      <img src="img/logo.png" alt="IMCA logo">
+      <div class="brand">IMCA Admin</div>
+    </div>
+
+    <nav class="nav" role="navigation" aria-label="Sidebar">
+      <div class="nav-item active" data-key="dashboard" tabindex="0">
+        <i class="fa fa-gauge-high"></i><span>Dashboard</span>
+        <div class="tooltip">Dashboard</div>
+      </div>
+      <div class="nav-item" data-key="registrations" tabindex="0">
+        <i class="fa fa-users"></i><span>Registrations</span>
+        <div class="tooltip">Registrations</div>
+      </div>
+      <div class="nav-item" data-key="courses" tabindex="0">
+        <i class="fa fa-book-open"></i><span>Courses</span>
+        <div class="tooltip">Courses</div>
+      </div>
+      <div class="nav-item" data-key="exports" tabindex="0">
+        <i class="fa fa-file-export"></i><span>Exports</span>
+        <div class="tooltip">Exports</div>
+      </div>
+
+      <div style="flex:1"></div>
+
+      <div class="nav-item" data-key="settings" tabindex="0">
+        <i class="fa fa-gear"></i><span>Settings</span>
+        <div class="tooltip">Settings</div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">v1.0 — UI</div>
+  </aside>
+
+  <!-- App main -->
+  <main class="app" role="main">
+    <!-- Topbar -->
+    <div class="topbar" role="banner">
+      <div class="left">
+        <div class="burger" id="burger" title="Toggle sidebar"><i class="fa fa-bars"></i></div>
+        <div class="page-title">
+          <h1>Registrations</h1>
+          <p>Manage all course registrations — review, export and contact candidates</p>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="icon-btn" id="notifBtn" title="Notifications"><i class="fa fa-bell"></i></div>
+
+        <div class="profile" id="profileBtn" title="Profile">
+          <img src="https://via.placeholder.com/48" alt="Admin">
+          <div style="display:flex;flex-direction:column;align-items:flex-start">
+            <div style="font-weight:800;font-size:14px">Admin</div>
+            <div style="font-size:13px;color:var(--muted)">Super Admin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <section class="filters" aria-label="Filters">
+      <div class="filter">
+        <i class="fa fa-book"></i>
+        <select id="fCourse"><option value="">All courses</option><option>CCS</option><option>CPC</option><option>CRC</option><option>CIC</option><option>IPDRG</option><option>BMCT</option></select>
+      </div>
+
+      <div class="filter">
+        <i class="fa fa-circle-info"></i>
+        <select id="fStatus"><option value="">All status</option><option value="Pending">Pending</option><option value="Approved">Approved</option><option value="Rejected">Rejected</option></select>
+      </div>
+
+      <div class="filter">
+        <i class="fa fa-calendar-days"></i>
+        <input type="date" id="fFrom" />
+      </div>
+
+      <div class="filter">
+        <i class="fa fa-calendar-days"></i>
+        <input type="date" id="fTo" />
+      </div>
+
+      <div class="filter" style="min-width:260px">
+        <i class="fa fa-magnifying-glass"></i>
+        <input type="text" id="fSearch" placeholder="Search name / email / phone" />
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="applyBtn">Apply</button>
+        <button class="btn ghost" id="resetBtn">Reset</button>
+      </div>
+    </section>
+
+    <!-- Table -->
+    <section class="card" aria-label="Registration list">
+      <div class="table-wrap">
+        <table aria-describedby="tabledesc">
+          <thead>
+            <tr>
+              <th class="col-check"><input type="checkbox" id="selectAll"></th>
+              <th>Candidate</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Course</th>
+              <th>Registered</th>
+              <th>Status</th>
+              <th class="col-more">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <!-- SAMPLE rows (UI only) -->
+            <tr data-id="1">
+              <td class="col-check"><input type="checkbox" class="row-check"></td>
+              <td>
+                <div class="cand">
+                  <div class="avatar">JD</div>
+                  <div>
+                    <div style="font-weight:800">John Doe</div>
+                    <div class="meta">Father: Rajesh Doe</div>
+                  </div>
+                </div>
+              </td>
+              <td>john@example.com</td>
+              <td>+91 98765 43210</td>
+              <td>CCS</td>
+              <td>2025-10-10</td>
+              <td><span class="badge pending">Pending</span></td>
+              <td class="col-more"><button class="btn ghost" onclick="openModal(event,1)"><i class="fa fa-ellipsis-vertical"></i></button></td>
+            </tr>
+
+            <tr data-id="2">
+              <td class="col-check"><input type="checkbox" class="row-check"></td>
+              <td>
+                <div class="cand">
+                  <div class="avatar" style="background:linear-gradient(90deg,#ecfccb,#bbf7d0);color:#15803d">JS</div>
+                  <div>
+                    <div style="font-weight:800">Jane Smith</div>
+                    <div class="meta">Father: Suresh Smith</div>
+                  </div>
+                </div>
+              </td>
+              <td>jane@example.com</td>
+              <td>+91 91234 56780</td>
+              <td>CPC</td>
+              <td>2025-10-12</td>
+              <td><span class="badge approved">Approved</span></td>
+              <td class="col-more"><button class="btn ghost" onclick="openModal(event,2)"><i class="fa fa-ellipsis-vertical"></i></button></td>
+            </tr>
+
+            <!-- no-data placeholder if empty; JS may swap it later -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" role="document">
+      <div class="modal-left">
+        <div style="display:flex; gap:12px; align-items:center; margin-bottom:10px">
+          <div id="mAvatar" style="width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(90deg,#dbeafe,#e0f2fe);font-weight:900;color:var(--brand-1);font-size:20px">JD</div>
+          <div>
+            <div id="mName" style="font-weight:900; font-size:18px">John Doe</div>
+            <div id="mSub" class="meta">+91 98765 43210 • john@example.com</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:12px">
+          <div class="tabs" role="tablist">
+            <div class="tab active" data-tab="profile" onclick="switchTab('profile')">Profile Info</div>
+            <div class="tab" data-tab="docs" onclick="switchTab('docs')">Documents</div>
+          </div>
+          <div style="margin-left:auto; color:var(--muted); font-size:13px">ID: <span id="mId">1</span></div>
+        </div>
+
+        <div id="tabProfile">
+          <div class="card-section" style="margin-bottom:12px">
+            <div class="card-title">Personal Information</div>
+            <div class="field"><div class="label">Full name</div><div class="value" id="f_full">John Doe</div></div>
+            <div class="field"><div class="label">Father name</div><div class="value" id="f_father">Rajesh Doe</div></div>
+            <div class="field"><div class="label">Age</div><div class="value" id="f_age">25</div></div>
+            <div class="field"><div class="label">Qualification</div><div class="value" id="f_qual">Graduation</div></div>
+            <div class="field"><div class="label">Experience</div><div class="value" id="f_exp">2 years</div></div>
+            <div class="field"><div class="label">Interested Exam</div><div class="value" id="f_exam">CCS</div></div>
+            <div class="field"><div class="label">Registered On</div><div class="value" id="f_date">2025-10-10</div></div>
+          </div>
+
+          <div class="card-section">
+            <div class="card-title">Notes</div>
+            <div id="f_notes" style="color:var(--muted)">No additional notes.</div>
+          </div>
+        </div>
+
+        <div id="tabDocs" style="display:none">
+          <div class="card-section" style="margin-bottom:12px">
+            <div class="card-title">Uploaded Documents</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div class="doc-row">
+                <div class="doc-thumb">Aadhaar</div>
+                <div style="flex:1">
+                  <div style="font-weight:700">Aadhaar (front)</div>
+                  <div class="meta">JPEG • 120 KB</div>
+                </div>
+                <div><button class="btn ghost" style="padding:8px 10px">View</button></div>
+              </div>
+
+              <div class="doc-row">
+                <div class="doc-thumb">PAN</div>
+                <div style="flex:1">
+                  <div style="font-weight:700">PAN (front)</div>
+                  <div class="meta">PNG • 90 KB</div>
+                </div>
+                <div><button class="btn ghost" style="padding:8px 10px">View</button></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-section">
+            <div class="card-title">Document notes</div>
+            <div class="meta">Click "View" to preview documents. Download options on the right.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="modal-right">
+        <div class="card-section">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-weight:800">Actions</div>
+            <div class="meta">Quick</div>
+          </div>
+
+          <div class="actions">
+            <button class="action edit" onclick="onEdit()">Edit</button>
+            <button class="action approve" onclick="onApprove()">Approve</button>
+            <button class="action reject" onclick="onReject()">Reject</button>
+            <button class="action export" onclick="onExport()">Export Excel</button>
+            <button class="action" style="background:#111827;color:#fff" onclick="onZip()">Download ZIP</button>
+            <button class="action" style="background:transparent;border:1px solid rgba(2,6,23,0.06)" onclick="closeModal()">Close</button>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <div style="font-weight:800;margin-bottom:6px">Summary</div>
+          <div class="meta">All fields can be exported as Excel. Photos and documents will be bundled into a ZIP.</div>
+        </div>
+
+        <div class="card-section" style="text-align:center">
+          <div style="font-weight:800">Last updated</div>
+          <div class="meta">2025-10-15</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+<script>
+  // ---------- Sidebar toggle ----------
+  const sidebar = document.getElementById('sidebar');
+  const burger = document.getElementById('burger');
+  burger.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+  });
+
+  // nav active UI
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  // ---------- Modal (tabs + open/close) ----------
+  const modal = document.getElementById('modal');
+  const mId = document.getElementById('mId');
+  function openModal(e, id){
+    if(e) e.stopPropagation();
+    // fake populate from row (UI-only)
+    const row = document.querySelector(`tr[data-id="${id}"]`);
+    if(!row) return;
+    const name = row.querySelector('.cand div div').innerText || 'Candidate';
+    const email = row.cells[2].innerText;
+    const phone = row.cells[3].innerText;
+    const course = row.cells[4].innerText;
+    const date = row.cells[5].innerText;
+    const badge = row.cells[6].innerText;
+
+    document.getElementById('mAvatar').innerText = (name.split(' ').map(s=>s[0]).slice(0,2).join('')) || 'CI';
+    document.getElementById('mName').innerText = name;
+    document.getElementById('mSub').innerText = `${phone} • ${email}`;
+    mId.innerText = id;
+    document.getElementById('f_full').innerText = name;
+    document.getElementById('f_father').innerText = row.querySelector('.meta') ? row.querySelector('.meta').innerText.replace('Father: ','') : '—';
+    document.getElementById('f_age').innerText = id === 1 ? '25' : '27';
+    document.getElementById('f_qual').innerText = id === 1 ? 'Graduation' : 'Post Graduation';
+    document.getElementById('f_exp').innerText = id === 1 ? '2 years' : '3 years';
+    document.getElementById('f_exam').innerText = course;
+    document.getElementById('f_date').innerText = date;
+    document.getElementById('f_notes').innerText = id === 1 ? 'No additional notes.' : 'Interested in weekend batches.';
+
+    // show profile tab by default
+    switchTab('profile');
+
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+  }
+
+  function closeModal(){
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+  }
+  window.closeModal = closeModal;
+
+  // close when clicking backdrop
+  modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+  // tabs
+  function switchTab(tab){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t=>{ if(t.dataset.tab===tab) t.classList.add('active')});
+    document.getElementById('tabProfile').style.display = tab==='profile' ? 'block' : 'none';
+    document.getElementById('tabDocs').style.display = tab==='docs' ? 'block' : 'none';
+  }
+
+  // ---------- actions (UI placeholders) ----------
+  function onEdit(){ alert('Open edit panel (UI placeholder).'); }
+  function onApprove(){ alert('Candidate approved (UI placeholder). Update status in backend).'); }
+  function onReject(){ alert('Candidate rejected (UI placeholder).'); }
+  function onExport(){ alert('Exporting candidate data to Excel (UI placeholder). Use SheetJS to implement).'); }
+  function onZip(){ alert('Preparing ZIP of documents (UI placeholder). Use JSZip to implement).'); }
+
+  // open from the buttons
+  window.openModal = openModal;
+
+  // apply/reset filters (visual only)
+  document.getElementById('applyBtn').addEventListener('click', ()=> {
+    const el = document.querySelector('.filters');
+    el.style.boxShadow = '0 12px 40px rgba(13,110,253,0.12)';
+    setTimeout(()=> el.style.boxShadow = '0 8px 28px rgba(2,6,23,0.06)', 800);
+  });
+  document.getElementById('resetBtn').addEventListener('click', ()=> {
+    document.getElementById('fCourse').value='';
+    document.getElementById('fStatus').value='';
+    document.getElementById('fFrom').value='';
+    document.getElementById('fTo').value='';
+    document.getElementById('fSearch').value='';
+  });
+
+  // quick search visual
+  document.getElementById('fSearch').addEventListener('input', function(){
+    const v = this.value.trim().toLowerCase();
+    const rows = document.querySelectorAll('#tbody tr');
+    rows.forEach(r=>{
+      const name = r.querySelector('.cand div div').innerText.toLowerCase();
+      const email = r.cells[2].innerText.toLowerCase();
+      const phone = r.cells[3].innerText.toLowerCase();
+      const combined = `${name} ${email} ${phone}`;
+      r.style.display = combined.includes(v) ? '' : 'none';
+    });
+  });
+
+  // select all behavior
+  document.getElementById('selectAll').addEventListener('change', function(){
+    const checked = this.checked;
+    document.querySelectorAll('.row-check').forEach(cb => cb.checked = checked);
+  });
+</script>
+</body>
+</html>
