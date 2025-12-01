@@ -64,7 +64,6 @@
 
   .sidebar-footer{ display:flex; justify-content:center; color:rgba(255,255,255,0.9); font-size:13px; }
 
-  /* Tooltip for collapsed sidebar */
   .nav-item .tooltip{
     display:none;
     position:absolute;
@@ -138,7 +137,6 @@
   .col-check{ width:46px }
   .col-more{ width:72px; text-align:center }
 
-  /* Candidate name cell */
   .cand{
     display:flex; gap:12px; align-items:center;
   }
@@ -148,7 +146,6 @@
   }
   .meta{ color:var(--muted); font-size:13px }
 
-  /* status badges */
   .badge{
     display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:13px;
   }
@@ -156,10 +153,8 @@
   .badge.approved{ background: rgba(22,163,74,0.08); color:var(--success) }
   .badge.rejected{ background: rgba(220,38,38,0.08); color:var(--danger) }
 
-  /* no-data placeholder */
   .no-data{ padding:30px; text-align:center; color:var(--muted) }
 
-  /* ---------------- Modal (two-tab) ---------------- */
   .modal{
     position:fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(2,6,23,0.45); z-index:60; padding:24px;
   }
@@ -187,12 +182,10 @@
   .action.reject{ background: linear-gradient(90deg,#ef4444,#dc2626); color:#fff }
   .action.export{ background: linear-gradient(90deg,var(--brand-1),var(--brand-2)); color:#fff }
 
-  /* modal tabs */
   .tabs{ display:flex; gap:8px; margin-bottom:12px }
   .tab{ padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700; background:transparent; border:1px solid rgba(2,6,23,0.04) }
   .tab.active{ background: linear-gradient(90deg,var(--brand-1),var(--brand-2)); color:#fff; border:0 }
 
-  /* responsive */
   @media (max-width:990px){
     aside.sidebar{ display:none }
     .modal-inner{ flex-direction:column }
@@ -221,6 +214,10 @@
       <div class="nav-item" data-key="courses" tabindex="0">
         <i class="fa fa-book-open"></i><span>Courses</span>
         <div class="tooltip">Courses</div>
+      </div>
+      <div class="nav-item" data-key="results" tabindex="0">
+        <i class="fa fa-award"></i><span>Results</span>
+        <div class="tooltip">Results Generator</div>
       </div>
       <div class="nav-item" data-key="exports" tabindex="0">
         <i class="fa fa-file-export"></i><span>Exports</span>
@@ -252,6 +249,10 @@
 
       <div class="right">
         <div class="icon-btn" id="notifBtn" title="Notifications"><i class="fa fa-bell"></i></div>
+
+        <button class="btn ghost" id="logoutBtn" type="button" style="padding:8px 12px;font-size:13px;">
+          <i class="fa fa-right-from-bracket"></i>&nbsp;Logout
+        </button>
 
         <div class="profile" id="profileBtn" title="Profile">
           <img src="https://via.placeholder.com/48" alt="Admin">
@@ -313,7 +314,6 @@
             </tr>
           </thead>
           <tbody id="tbody">
-            <!-- SAMPLE rows (UI only) -->
             <tr data-id="1">
               <td class="col-check"><input type="checkbox" class="row-check"></td>
               <td>
@@ -351,10 +351,196 @@
               <td><span class="badge approved">Approved</span></td>
               <td class="col-more"><button class="btn ghost" onclick="openModal(event,2)"><i class="fa fa-ellipsis-vertical"></i></button></td>
             </tr>
-
-            <!-- no-data placeholder if empty; JS may swap it later -->
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- Results Generator -->
+    <section class="card" id="results-section" aria-label="Results generator" style="display:none">
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <form id="resultForm" style="flex:1;min-width:260px;display:flex;flex-direction:column;gap:10px">
+          <h2 style="margin:0 0 4px;font-size:18px;font-weight:800">Result Card Generator</h2>
+          <p style="margin:0 0 10px;font-size:13px;color:var(--muted)">
+            Create a topper/result card, download it, and save details for the website.
+          </p>
+
+          <label style="font-size:13px;font-weight:600">Student photo</label>
+          <input type="file" id="resPhoto" accept="image/*" style="padding:6px 8px;border-radius:8px;border:1px solid rgba(15,23,42,0.12)">
+
+          <label style="font-size:13px;font-weight:600;margin-top:4px">Student name</label>
+          <input type="text" id="resName" placeholder="Tanuja" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(15,23,42,0.12)">
+
+          <label style="font-size:13px;font-weight:600;margin-top:4px">Batch</label>
+          <input type="text" id="resBatch" placeholder="CCS – April 2025" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(15,23,42,0.12)">
+
+          <label style="font-size:13px;font-weight:600;margin-top:4px">Exam name</label>
+          <input type="text" id="resExam" value="CCS Exam" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(15,23,42,0.12)">
+
+          <label style="font-size:13px;font-weight:600;margin-top:4px">Score</label>
+          <input type="text" id="resScore" placeholder="80.95%" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(15,23,42,0.12)">
+
+          <label style="font-size:13px;font-weight:600;margin-top:4px">Rank / Type</label>
+          <select id="resRank" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(15,23,42,0.12)">
+            <option value="Topper">Topper</option>
+            <option value="Second Place">Second Place</option>
+            <option value="Third Place">Third Place</option>
+            <option value="Completed Batch">Completed Batch</option>
+          </select>
+
+          <label style="font-size:13px;font-weight:600;margin-top:4px">Frame</label>
+          <select id="resFrame" style="padding:8px 10px;border-radius:8px;border:1px solid rgba(15,23,42,0.12)">
+            <option value="gold">Gold</option>
+            <option value="silver">Silver</option>
+            <option value="bronze">Bronze</option>
+          </select>
+        </form>
+
+        <div style="flex:1;min-width:280px;display:flex;justify-content:center;align-items:center">
+          <!-- 1:1 square card suited to 1080x1080 export -->
+          <div id="resultCard" style="
+            width:540px;
+            height:540px;
+            border-radius:28px;
+            background:#ffffff;
+            box-shadow:0 26px 70px rgba(15,23,42,0.32);
+            position:relative;
+            overflow:hidden;
+          ">
+            <!-- background side bands -->
+            <div style="
+              position:absolute;left:-60px;top:60px;width:180px;height:420px;
+              background:linear-gradient(180deg,#c58c1b,#facc15);
+              border-radius:120px;
+              opacity:.95;
+            "></div>
+            <div style="
+              position:absolute;right:-60px;top:60px;width:180px;height:420px;
+              background:linear-gradient(180deg,#8b5b1a,#facc15);
+              border-radius:120px;
+              opacity:.95;
+            "></div>
+
+            <!-- top gold bar -->
+            <div id="resRibbon" style="
+              position:absolute;top:0;left:0;right:0;height:110px;
+              background:linear-gradient(90deg,#f0b322,#facc15);
+              display:flex;align-items:flex-end;justify-content:center;
+              padding-bottom:18px;
+            ">
+              <span style="
+                color:#fff;
+                font-weight:800;
+                font-size:24px;
+                letter-spacing:0.18em;
+                text-transform:uppercase;
+                text-shadow:0 2px 4px rgba(0,0,0,0.35);
+              ">CONGRATULATIONS</span>
+            </div>
+
+            <!-- IMCA logo top-right -->
+            <div style="position:absolute;top:16px;right:24px;display:flex;align-items:center;gap:6px;">
+              <img src="img/logo.png" alt="IMCA" style="height:40px;width:auto;border-radius:10px;background:#fff;padding:3px;box-shadow:0 4px 12px rgba(0,0,0,0.18);">
+              <span style="font-size:12px;font-weight:800;color:#0f172a;line-height:1.1;text-transform:uppercase;">
+                IMCA<br>HEALTHCARE
+              </span>
+            </div>
+
+            <!-- central white arc behind photo -->
+            <div style="
+              position:absolute;
+              top:120px;
+              left:50%;
+              transform:translateX(-50%);
+              width:410px;
+              height:260px;
+              border-radius:410px 410px 0 0;
+              background:#ffffff;
+              box-shadow:0 18px 35px rgba(0,0,0,0.25);
+            "></div>
+
+            <!-- photo circle -->
+            <div style="
+              position:absolute;
+              top:155px;
+              left:50%;
+              transform:translateX(-50%);
+              width:320px;
+              height:320px;
+              border-radius:50%;
+              background:#0ea5e9;
+              display:flex;align-items:center;justify-content:center;
+              overflow:hidden;
+              box-shadow:0 14px 30px rgba(0,0,0,0.35);
+            ">
+              <img id="resPhotoPreview" src="" alt="Student" style="
+                width:100%;
+                height:100%;
+                object-fit:cover;
+              ">
+            </div>
+
+            <!-- title arc text simulated as straight line -->
+            <div style="
+              position:absolute;
+              top:128px;
+              left:50%;
+              transform:translateX(-50%);
+              width:100%;
+              text-align:center;
+              font-size:14px;
+              font-weight:800;
+              letter-spacing:0.32em;
+              text-transform:uppercase;
+              color:#111827;
+            ">
+              CERTIFIED&nbsp;CODING&nbsp;SPECIALIST
+            </div>
+
+            <!-- name ribbon -->
+            <div style="
+              position:absolute;
+              top:350px;
+              left:50%;
+              transform:translateX(-50%);
+              padding:10px 40px;
+              background:#ffffff;
+              border-radius:999px;
+              box-shadow:0 14px 32px rgba(0,0,0,0.35);
+            ">
+              <span id="resNameText" style="font-size:22px;font-weight:900;color:#111827;">Student Name</span>
+            </div>
+
+            <!-- text block -->
+            <div style="
+              position:absolute;
+              bottom:56px;
+              left:50%;
+              transform:translateX(-50%);
+              width:100%;
+              text-align:center;
+              padding:0 24px;
+            ">
+              <div id="resExamText" style="font-size:18px;font-weight:800;color:#111827;margin-bottom:2px;">
+                CCS Exam
+              </div>
+              <div id="resScoreText" style="font-size:18px;font-weight:800;color:#111827;margin-bottom:4px;">
+                Score - 80.95%
+              </div>
+              <div id="resBatchText" style="font-size:14px;color:#374151;margin-bottom:6px;">
+                Batch: CCS – April 2025 • <span id="resRankText">Topper</span>
+              </div>
+              <div style="font-size:14px;color:#111827;">
+                Contact +91 8218220183
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn ghost" type="button" id="saveResultBtn">Save Result (for website)</button>
+        <button class="btn primary" type="button" id="downloadCardBtn">Download Card</button>
       </div>
     </section>
   </main>
@@ -426,7 +612,6 @@
             <div class="meta">Click "View" to preview documents. Download options on the right.</div>
           </div>
         </div>
-
       </div>
 
       <aside class="modal-right">
@@ -460,14 +645,12 @@
   </div>
 
 <script>
-  // ---------- Sidebar toggle ----------
   const sidebar = document.getElementById('sidebar');
   const burger = document.getElementById('burger');
   burger.addEventListener('click', () => {
     sidebar.classList.toggle('collapsed');
   });
 
-  // nav active UI
   document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('click', () => {
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -475,24 +658,21 @@
     });
   });
 
-  // ---------- Modal (tabs + open/close) ----------
   const modal = document.getElementById('modal');
   const mId = document.getElementById('mId');
   function openModal(e, id){
     if(e) e.stopPropagation();
-    // fake populate from row (UI-only)
-    const row = document.querySelector(`tr[data-id="${id}"]`);
+    const row = document.querySelector('tr[data-id="' + id + '"]');
     if(!row) return;
     const name = row.querySelector('.cand div div').innerText || 'Candidate';
     const email = row.cells[2].innerText;
     const phone = row.cells[3].innerText;
     const course = row.cells[4].innerText;
     const date = row.cells[5].innerText;
-    const badge = row.cells[6].innerText;
 
-    document.getElementById('mAvatar').innerText = (name.split(' ').map(s=>s[0]).slice(0,2).join('')) || 'CI';
+    document.getElementById('mAvatar').innerText = (name.split(' ').map(function(s){return s[0];}).slice(0,2).join('')) || 'CI';
     document.getElementById('mName').innerText = name;
-    document.getElementById('mSub').innerText = `${phone} • ${email}`;
+    document.getElementById('mSub').innerText = phone + ' • ' + email;
     mId.innerText = id;
     document.getElementById('f_full').innerText = name;
     document.getElementById('f_father').innerText = row.querySelector('.meta') ? row.querySelector('.meta').innerText.replace('Father: ','') : '—';
@@ -503,9 +683,7 @@
     document.getElementById('f_date').innerText = date;
     document.getElementById('f_notes').innerText = id === 1 ? 'No additional notes.' : 'Interested in weekend batches.';
 
-    // show profile tab by default
     switchTab('profile');
-
     modal.classList.add('show');
     modal.setAttribute('aria-hidden','false');
   }
@@ -516,35 +694,30 @@
   }
   window.closeModal = closeModal;
 
-  // close when clicking backdrop
-  modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
 
-  // tabs
   function switchTab(tab){
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t=>{ if(t.dataset.tab===tab) t.classList.add('active')});
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.tab').forEach(function(t){ if(t.dataset.tab===tab) t.classList.add('active');});
     document.getElementById('tabProfile').style.display = tab==='profile' ? 'block' : 'none';
     document.getElementById('tabDocs').style.display = tab==='docs' ? 'block' : 'none';
   }
 
-  // ---------- actions (UI placeholders) ----------
   function onEdit(){ alert('Open edit panel (UI placeholder).'); }
   function onApprove(){ alert('Candidate approved (UI placeholder). Update status in backend).'); }
   function onReject(){ alert('Candidate rejected (UI placeholder).'); }
   function onExport(){ alert('Exporting candidate data to Excel (UI placeholder). Use SheetJS to implement).'); }
   function onZip(){ alert('Preparing ZIP of documents (UI placeholder). Use JSZip to implement).'); }
 
-  // open from the buttons
   window.openModal = openModal;
 
-  // apply/reset filters (visual only)
-  document.getElementById('applyBtn').addEventListener('click', ()=> {
+  document.getElementById('applyBtn').addEventListener('click', function(){
     const el = document.querySelector('.filters');
     el.style.boxShadow = '0 12px 40px rgba(13,110,253,0.12)';
-    setTimeout(()=> el.style.boxShadow = '0 8px 28px rgba(2,6,23,0.06)', 800);
+    setTimeout(function(){ el.style.boxShadow = '0 8px 28px rgba(2,6,23,0.06)'; }, 800);
   });
-  document.getElementById('resetBtn').addEventListener('click', ()=> {
+  document.getElementById('resetBtn').addEventListener('click', function(){
     document.getElementById('fCourse').value='';
     document.getElementById('fStatus').value='';
     document.getElementById('fFrom').value='';
@@ -552,24 +725,123 @@
     document.getElementById('fSearch').value='';
   });
 
-  // quick search visual
   document.getElementById('fSearch').addEventListener('input', function(){
     const v = this.value.trim().toLowerCase();
     const rows = document.querySelectorAll('#tbody tr');
-    rows.forEach(r=>{
+    rows.forEach(function(r){
       const name = r.querySelector('.cand div div').innerText.toLowerCase();
       const email = r.cells[2].innerText.toLowerCase();
       const phone = r.cells[3].innerText.toLowerCase();
-      const combined = `${name} ${email} ${phone}`;
-      r.style.display = combined.includes(v) ? '' : 'none';
+      const combined = name + ' ' + email + ' ' + phone;
+      r.style.display = combined.indexOf(v) !== -1 ? '' : 'none';
     });
   });
 
-  // select all behavior
   document.getElementById('selectAll').addEventListener('change', function(){
     const checked = this.checked;
-    document.querySelectorAll('.row-check').forEach(cb => cb.checked = checked);
+    document.querySelectorAll('.row-check').forEach(function(cb){ cb.checked = checked; });
+  });
+
+  const sectionMap = { results: 'results-section' };
+
+  document.querySelectorAll('.nav-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      const key = item.getAttribute('data-key');
+      const sectionId = sectionMap[key];
+      if (!sectionId) return;
+
+      Object.values(sectionMap).forEach(function(id){
+        if (!id) return;
+        const el = document.getElementById(id);
+        if (el) el.style.display = (id === sectionId) ? 'block' : 'none';
+      });
+    });
+  });
+
+  const resName = document.getElementById('resName');
+  const resBatch = document.getElementById('resBatch');
+  const resExam = document.getElementById('resExam');
+  const resScore = document.getElementById('resScore');
+  const resRank = document.getElementById('resRank');
+  const resFrame = document.getElementById('resFrame');
+  const resPhotoInp = document.getElementById('resPhoto');
+
+  const resNameText = document.getElementById('resNameText');
+  const resBatchText = document.getElementById('resBatchText');
+  const resExamText = document.getElementById('resExamText');
+  const resScoreText = document.getElementById('resScoreText');
+  const resPhotoPreview = document.getElementById('resPhotoPreview');
+  const resRibbon = document.getElementById('resRibbon');
+  const resultCard = document.getElementById('resultCard');
+
+  function syncResultPreview(){
+    if(!resNameText) return;
+    resNameText.textContent = resName && resName.value ? resName.value : 'Student Name';
+    resExamText.textContent = resExam && resExam.value ? resExam.value : 'CCS Exam';
+    resScoreText.textContent = resScore && resScore.value ? ('Score - ' + resScore.value) : 'Score - 80.95%';
+    const batchVal = resBatch && resBatch.value ? resBatch.value : 'CCS – April 2025';
+    const rankVal = resRank && resRank.value ? resRank.value : 'Topper';
+    resBatchText.innerHTML = 'Batch: ' + batchVal + ' • <span id="resRankText">' + rankVal + '</span>';
+  }
+
+  if (resName) {
+    resName.addEventListener('input', syncResultPreview);
+    resBatch.addEventListener('input', syncResultPreview);
+    resExam.addEventListener('input', syncResultPreview);
+    resScore.addEventListener('input', syncResultPreview);
+    resRank.addEventListener('change', syncResultPreview);
+
+    resPhotoInp.addEventListener('change', function(){
+      const file = this.files && this.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e){ resPhotoPreview.src = e.target.result; };
+      reader.readAsDataURL(file);
+    });
+
+    resFrame.addEventListener('change', function(){
+      let grad = 'linear-gradient(90deg,#f0b322,#facc15)';
+      if (this.value === 'silver') grad = 'linear-gradient(90deg,#9ca3af,#e5e7eb)';
+      if (this.value === 'bronze') grad = 'linear-gradient(90deg,#92400e,#fbbf24)';
+      resRibbon.style.background = grad;
+    });
+
+    syncResultPreview();
+
+    document.getElementById('saveResultBtn').addEventListener('click', function(){
+      const storeKey = 'imca_results';
+      const existing = JSON.parse(localStorage.getItem(storeKey) || '[]');
+      existing.push({
+        id: Date.now(),
+        name: resName.value,
+        batch: resBatch.value,
+        exam: resExam.value,
+        score: resScore.value,
+        rank: resRank.value,
+        createdAt: new Date().toISOString()
+      });
+      localStorage.setItem(storeKey, JSON.stringify(existing));
+      alert('Result saved (UI only). Connect to backend later for Achievement page.');
+    });
+
+    document.getElementById('downloadCardBtn').addEventListener('click', function(){
+      if (typeof html2canvas === 'undefined') {
+        alert('Add html2canvas script to enable download.');
+        return;
+      }
+      html2canvas(resultCard).then(function(canvas){
+        const link = document.createElement('a');
+        link.download = (resName.value || 'student') + '_result.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    });
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', function () {
+    window.location.href = 'index.html';
   });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </body>
 </html>

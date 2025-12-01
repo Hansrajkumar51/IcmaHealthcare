@@ -1,91 +1,216 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-    <head>
-        <!-- Meta Tags -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="keywords" content="Site keywords here">
-		<meta name="description" content="">
-		<meta name='copyright' content=''>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		
-		<!-- Title -->
-        <title>icma Healthcare</title>
-		
-		<!-- Favicon -->
-        <link rel="icon" href="img/favicon.png">
-		
-		<!-- Google Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="IMCA Healthcare, Medical Coding, Achievements, Results">
+    <meta name="description" content="IMCA Healthcare student achievements, exam results, and placement highlights.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<!-- Nice Select CSS -->
-		<link rel="stylesheet" href="css/nice-select.css">
-		<!-- Font Awesome CSS -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-		<!-- icofont CSS -->
-        <link rel="stylesheet" href="css/icofont.css">
-		<!-- Slicknav -->
-		<link rel="stylesheet" href="css/slicknav.min.css">
-		<!-- Owl Carousel CSS -->
-        <link rel="stylesheet" href="css/owl-carousel.css">
-		<!-- Datepicker CSS -->
-		<link rel="stylesheet" href="css/datepicker.css">
-		<!-- Animate CSS -->
-        <link rel="stylesheet" href="css/animate.min.css">
-		<!-- Magnific Popup CSS -->
-        <link rel="stylesheet" href="css/magnific-popup.css">
-		
-		<!-- Medipro CSS -->
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="css/responsive.css">
-		
-    </head>
-    <body>
-	
-		<!-- Preloader -->
-        <div class="preloader">
-            <div class="loader">
-                <div class="loader-outter"></div>
-                <div class="loader-inner"></div>
+    <!-- Title -->
+    <title>IMCA Healthcare - Achievements</title>
 
-                <div class="indicator"> 
-                    <svg width="16px" height="12px">
-                        <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                        <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                    </svg>
-                </div>
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- icofont CSS -->
+    <link rel="stylesheet" href="css/icofont.css">
+    <!-- Slicknav -->
+    <link rel="stylesheet" href="css/slicknav.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="css/datepicker.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Medipro CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* Page banner */
+        .page-banner {
+            background: linear-gradient(135deg, #086ad8 0%, #42a5f5 100%);
+            padding: 80px 0 70px;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-banner h1 {
+            font-weight: 700;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .page-banner p {
+            margin: 0;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        /* Stats area */
+        .achievement-stats {
+            padding: 60px 0 40px;
+        }
+        .achievement-stats .single-stat {
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .single-stat i {
+            font-size: 32px;
+            color: #086ad8;
+            margin-bottom: 10px;
+        }
+        .single-stat h3 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .single-stat span {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #777;
+        }
+
+        /* Timeline / cards */
+        .achievement-section {
+            padding: 20px 0 60px;
+        }
+        .achievement-section .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        .achievement-section .section-title h2 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .achievement-card {
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 20px 20px 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .achievement-card .badge-year {
+            background: #086ad8;
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+        .achievement-card .icon-wrap {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(8,106,216,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #086ad8;
+            font-size: 18px;
+        }
+        .achievement-card h4 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+        .achievement-card p {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .achievement-card .meta {
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* Gallery-like grid for certificates / placements */
+        .achievement-gallery {
+            padding-bottom: 60px;
+        }
+        .achievement-gallery .single-gallery {
+            background: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            margin-bottom: 25px;
+        }
+        .achievement-gallery .single-gallery img {
+            width: 100%;
+            display: block;
+        }
+        .achievement-gallery .single-gallery .content {
+            padding: 14px 16px 12px;
+        }
+        .achievement-gallery .single-gallery h5 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        .achievement-gallery .single-gallery span {
+            font-size: 13px;
+            color: #777;
+        }
+
+        @media (max-width: 767.98px) {
+            .page-banner {
+                padding: 60px 0 50px;
+            }
+            .page-banner h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+            <div class="indicator">
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
             </div>
         </div>
-        <!-- End Preloader -->
-		
-		<!-- Get Pro Button
-		<ul class="pro-features">
-			<a class="get-pro" href="#">Get Pro</a>
-			<li class="big-title">Pro Version Available on Themeforest</li>
-			<li class="title">Pro Version Features</li>
-			<li>2+ premade home pages</li>
-			<li>20+ html pages</li>
-			<li>Color Plate With 12+ Colors</li>
-			<li>Sticky Header / Sticky Filters</li>
-			<li>Working Contact Form With Google Map</li>
-			<div class="button">
-				<a href="http://preview.themeforest.net/item/mediplus-medical-and-doctor-html-template/full_screen_preview/26665910?_ga=2.145092285.888558928.1591971968-344530658.1588061879" target="_blank" class="btn">Pro Version Demo</a>
-				<a href="https://themeforest.net/item/mediplus-medical-and-doctor-html-template/26665910" target="_blank" class="btn">Buy Pro Version</a>
-			</div>
-		</ul>
-	     -->
-	     
-		<!-- Header Area -->
-		<header class="header" >
-			<!-- Topbar -->
-			<div class="topbar">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6 col-md-5 col-12">
-							<!-- Social Links -->
+    </div>
+    <!-- End Preloader -->
+
+    <!-- Header Area -->
+    <header class="header">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-5 col-12">
                         <ul class="top-link">
                             <li><a href="https://www.facebook.com/share/1BfvPd8Loo/"><i class="icofont-facebook"></i></a></li>
                             <li><a href="https://www.instagram.com/medicalcodinginfo/?utm_source=qr&igsh=MTRzaXYzaDFyZmVvaA%3D%3D#"><i class="icofont-instagram"></i></a></li>
@@ -95,200 +220,320 @@
                         </ul>
                     </div>
                     <div class="col-lg-6 col-md-7 col-12">
-                        <!-- Contact -->
                         <ul class="top-contact">
                             <li><i class="fa fa-phone"></i> +91 8218220183</li>
                             <li><i class="fa fa-envelope"></i><a href="mailto:imcahealthcarehr@gmail.com">imcahealthcarehr@gmail.com</a></li>
                         </ul>
-							<!-- End Top Contact -->
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End Topbar -->
-			<!-- Header Inner -->
-			<div class="header-inner">
-				<div class="container">
-					<div class="inner">
-						<div class="row">
-							<div class="col-lg-3 col-md-3 col-12">
-								<!-- Start Logo -->
-								<div class="logo">
-									<a href="index.html"><img src="img/logo.png" alt="#"></a>
-								</div>
-								<!-- End Logo -->
-								<!-- Mobile Nav -->
-								<div class="mobile-nav"></div>
-								<!-- End Mobile Nav -->
-							</div>
-							<div class="col-lg-7 col-md-9 col-12">
-								<!-- Main Menu -->
-								<div class="main-menu">
-									<nav class="navigation">
-										<ul class="nav menu">
-											<li><a href="index.html">Home</a></li>
-											</li>
-											<li><a href="aboutus.html">About Us</a></li>
-											<li><a href="achievement.html">Achievement</a></li>
-											<li><a href="courses.html">Courses<i class="icofont-rounded-down"></i></a>
-												<ul class="dropdown">
-													<li><a href="ccs.html">CCS</a></li>
-													<li><a href="cpc.html">CPC</a></li>
-													<li><a href="crc.html">CRC</a></li>
-													<li><a href="cic.html">CIC</a></li>
-													<li><a href="ipdrg.html">IPDRG</a></li>
-													<li><a href="bmct.html">BMCT</a></li>
-												</ul>
-											</li>
-											<li><a href="reviews.html">Reviews <i class="#"></i></a>
-											</li>
-											<li><a href="contact.html">Contact Us</a></li>
-										</ul>
-									</nav>
-								</div>
-								<!--/ End Main Menu -->
-							</div>
-							<div class="col-lg-2 col-12">
-								<div class="get-quote">
-									<a href="https://wa.me/918218220183" class="btn">Enroll Now</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/ End Header Inner -->
-		</header>
-		<!-- End Header Area -->
-		 <div class="col-lg-2 col-12">
-								<div class="get-quote">
-									<a href="courses.html" class="btn">under construction</a>
-								</div>
-							</div>
-		
-		<!-- Footer Area -->
-		<footer id="footer" class="footer ">
-			<!-- Footer Top -->
-			<div class="footer-top">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-3 col-md-6 col-12">
-							<div class="single-footer">
-								<h2>About Us</h2>
-								<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
-								<!-- Social -->
-								<ul class="social">
-									<li><a href="https://www.facebook.com/share/1BfvPd8Loo/"><i class="icofont-facebook"></i></a></li>
-								    <li><a href="https://www.instagram.com/medicalcodinginfo/?utm_source=qr&igsh=MTRzaXYzaDFyZmVvaA%3D%3D#"><i class="icofont-instagram"></i></a></li>
-								    <li><a href="https://www.linkedin.com/groups/13873078/"><i class="icofont-linkedin"></i></a></li>
-								    <li><a href="https://www.youtube.com/@imcahealthcare"><i class="icofont-youtube-play"></i></a></li>
-									  
-								</ul>
-								<!-- End Social -->
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-12">
-							<div class="single-footer f-link">
-								<h2>Quick Links</h2>
-								<div class="row">
-									<div class="col-lg-6 col-md-6 col-12">
-										<ul>
-											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
-											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
-											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Achievement</a></li>
-											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Courses</a></li>
-											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>	
-										</ul>
-									</div>
-									<div class="col-lg-6 col-md-6 col-12">
-										<ul>
-											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>	
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-12">
-							<div class="single-footer">
-								<h2>Open Hours</h2>
-								<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
-								<ul class="time-sidual">
-									<li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
-									<li class="day">Saturday <span>9.00-18.30</span></li>
-									<li class="day">Monday - Thusday <span>9.00-15.00</span></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-12">
-							<div class="single-footer">
-								<h2>Newsletter</h2>
-								<p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
-								<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-									<input name="email" placeholder="Email Address" class="common-input" onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Your email address'" required="" type="email">
-									<button class="button"><i class="icofont icofont-paper-plane"></i></button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/ End Footer Top -->
-			<!-- Copyright -->
-			<div class="copyright">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-12">
-							<div class="copyright-content">
-								<p>© Copyright 2025  |  All Rights Reserved by <a href="#" target="_blank">Imca Healthcare</a> </p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/ End Copyright -->
-		</footer>
-		<!--/ End Footer Area -->
-		
-		<!-- jquery Min JS -->
-        <script src="js/jquery.min.js"></script>
-		<!-- jquery Migrate JS -->
-		<script src="js/jquery-migrate-3.0.0.js"></script>
-		<!-- jquery Ui JS -->
-		<script src="js/jquery-ui.min.js"></script>
-		<!-- Easing JS -->
-        <script src="js/easing.js"></script>
-		<!-- Color JS -->
-		<script src="js/colors.js"></script>
-		<!-- Popper JS -->
-		<script src="js/popper.min.js"></script>
-		<!-- Bootstrap Datepicker JS -->
-		<script src="js/bootstrap-datepicker.js"></script>
-		<!-- Jquery Nav JS -->
-        <script src="js/jquery.nav.js"></script>
-		<!-- Slicknav JS -->
-		<script src="js/slicknav.min.js"></script>
-		<!-- ScrollUp JS -->
-        <script src="js/jquery.scrollUp.min.js"></script>
-		<!-- Niceselect JS -->
-		<script src="js/niceselect.js"></script>
-		<!-- Tilt Jquery JS -->
-		<script src="js/tilt.jquery.min.js"></script>
-		<!-- Owl Carousel JS -->
-        <script src="js/owl-carousel.js"></script>
-		<!-- counterup JS -->
-		<script src="js/jquery.counterup.min.js"></script>
-		<!-- Steller JS -->
-		<script src="js/steller.js"></script>
-		<!-- Wow JS -->
-		<script src="js/wow.min.js"></script>
-		<!-- Magnific Popup JS -->
-		<script src="js/jquery.magnific-popup.min.js"></script>
-		<!-- Counter Up CDN JS -->
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-		<!-- Bootstrap JS -->
-		<script src="js/bootstrap.min.js"></script>
-		<!-- Main JS -->
-		<script src="js/main.js"></script>
-    </body>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Topbar -->
+
+        <!-- Header Inner -->
+        <div class="header-inner">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-12">
+                            <div class="logo">
+                                <a href="index.html"><img src="img/logo.png" alt="#"></a>
+                            </div>
+                            <div class="mobile-nav"></div>
+                        </div>
+                        <div class="col-lg-7 col-md-9 col-12">
+                            <div class="main-menu">
+                                <nav class="navigation">
+                                    <ul class="nav menu">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="aboutus.html">About Us</a></li>
+                                        <li class="active"><a href="achievement.html">Achievement</a></li>
+                                        <li><a href="courses.html">Courses <i class="icofont-rounded-down"></i></a>
+                                            <ul class="dropdown">
+                                                <li><a href="ccs.html">CCS</a></li>
+                                                <li><a href="cpc.html">CPC</a></li>
+                                                <li><a href="crc.html">CRC</a></li>
+                                                <li><a href="cic.html">CIC</a></li>
+                                                <li><a href="ipdrg.html">IPDRG</a></li>
+                                                <li><a href="bmct.html">BMCT</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="reviews.html">Reviews</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <div class="get-quote">
+                                <a href="https://wa.me/918218220183" class="btn">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Header Inner -->
+    </header>
+    <!-- End Header Area -->
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>Our Achievements</h1>
+            <p>Results, certifications, and success stories of IMCA Healthcare students.</p>
+        </div>
+    </section>
+
+    <!-- Key Stats -->
+    <section class="achievement-stats">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-stat">
+                        <i class="icofont-badge"></i>
+                        <h3>500+</h3>
+                        <span>Global Certifications</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-stat">
+                        <i class="icofont-doctor"></i>
+                        <h3>95%</h3>
+                        <span>Exam Pass Rate</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-stat">
+                        <i class="icofont-briefcase-1"></i>
+                        <h3>300+</h3>
+                        <span>Successful Placements</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-stat">
+                        <i class="icofont-ui-rating"></i>
+                        <h3>4.9/5</h3>
+                        <span>Average Student Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement Timeline / Highlights -->
+    <section class="achievement-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recent Milestones</h2>
+                <p>Some of the latest highlights from our CCS, CPC, CRC, CIC, IPDRG and BMCT batches.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="achievement-card">
+                        <div class="icon-wrap">
+                            <i class="icofont-badge"></i>
+                        </div>
+                        <div>
+                            <span class="badge-year">2025</span>
+                            <h4>CCS Batch – 100% First Attempt Pass</h4>
+                            <p>All candidates from the April 2025 CCS batch cleared their exam in the first attempt.</p>
+                            <div class="meta">Location: Coimbatore • Mode: Online / Classroom</div>
+                        </div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="icon-wrap">
+                            <i class="icofont-chart-growth"></i>
+                        </div>
+                        <div>
+                            <span class="badge-year">2024</span>
+                            <h4>Top Scores in CPC Exam</h4>
+                            <p>Multiple students achieved 90%+ scores in the CPC certification conducted in 2024.</p>
+                            <div class="meta">Course: CPC • Support: Exam-focused mentoring</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="achievement-card">
+                        <div class="icon-wrap">
+                            <i class="icofont-briefcase-1"></i>
+                        </div>
+                        <div>
+                            <span class="badge-year">2024</span>
+                            <h4>International Placement Offers</h4>
+                            <p>Students from CRC and IPDRG batches received offers from leading healthcare companies.</p>
+                            <div class="meta">Domains: Coding, Auditing, Revenue Cycle</div>
+                        </div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="icon-wrap">
+                            <i class="icofont-award"></i>
+                        </div>
+                        <div>
+                            <span class="badge-year">2023</span>
+                            <h4>BMCT Alumni Excellence</h4>
+                            <p>BMCT alumni progressed to senior roles with strong feedback on practical skills training.</p>
+                            <div class="meta">Focus: Practical training • Continuous support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates / Gallery (placeholder images) -->
+    <section class="achievement-gallery">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Certificates & Moments</h2>
+                <p>Snapshots from our certification results, award ceremonies, and milestones.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-gallery">
+                        <img src="img/achievement-1.jpg" alt="Achievement 1">
+                        <div class="content">
+                            <h5>CCS Result Highlights</h5>
+                            <span>First attempt success stories from recent batches.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-gallery">
+                        <img src="img/achievement-2.jpg" alt="Achievement 2">
+                        <div class="content">
+                            <h5>Top Performers</h5>
+                            <span>Students recognized for outstanding exam scores.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-gallery">
+                        <img src="img/achievement-3.jpg" alt="Achievement 3">
+                        <div class="content">
+                            <h5>Placement Success</h5>
+                            <span>Offers from leading healthcare organizations.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Small note / CTA -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p style="margin-top:10px;font-size:14px;">
+                        More detailed result and placement updates are available on our social media handles.
+                    </p>
+                    <a href="https://www.instagram.com/medicalcodinginfo/" class="btn" target="_blank">View Latest Updates</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Area -->
+    <footer id="footer" class="footer ">
+        <!-- Footer Top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer">
+                            <h2>About Us</h2>
+                            <p>IMCA Healthcare provides professional training for international medical coding certifications and career-ready skills.</p>
+                            <ul class="social">
+                                <li><a href="https://www.facebook.com/share/1BfvPd8Loo/"><i class="icofont-facebook"></i></a></li>
+                                <li><a href="https://www.instagram.com/medicalcodinginfo/?utm_source=qr&igsh=MTRzaXYzaDFyZmVvaA%3D%3D#"><i class="icofont-instagram"></i></a></li>
+                                <li><a href="https://www.linkedin.com/groups/13873078/"><i class="icofont-linkedin"></i></a></li>
+                                <li><a href="https://www.youtube.com/@imcahealthcare"><i class="icofont-youtube-play"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer f-link">
+                            <h2>Quick Links</h2>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <ul>
+                                        <li><a href="index.html"><i class="fa fa-caret-right"></i>Home</a></li>
+                                        <li><a href="aboutus.html"><i class="fa fa-caret-right"></i>About Us</a></li>
+                                        <li><a href="achievement.html"><i class="fa fa-caret-right"></i>Achievement</a></li>
+                                        <li><a href="courses.html"><i class="fa fa-caret-right"></i>Courses</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right"></i>Other Links</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <ul>
+                                        <li><a href="contact.html"><i class="fa fa-caret-right"></i>Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer">
+                            <h2>Open Hours</h2>
+                            <p>Training and support are available across flexible hours to support working professionals and students.</p>
+                            <ul class="time-sidual">
+                                <li class="day">Monday - Friday <span>8.00 - 20.00</span></li>
+                                <li class="day">Saturday <span>9.00 - 18.30</span></li>
+                                <li class="day">Sunday <span>By Appointment</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer">
+                            <h2>Newsletter</h2>
+                            <p>Subscribe to receive updates about new batches, results, and placement drives.</p>
+                            <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                                <input name="email" placeholder="Email Address" class="common-input"
+                                       onfocus="this.placeholder = ''"
+                                       onblur="this.placeholder = 'Your email address'" required type="email">
+                                <button class="button"><i class="icofont icofont-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Footer Top -->
+
+        <!-- Copyright -->
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="copyright-content">
+                            <p>© Copyright 2025 | All Rights Reserved by
+                                <a href="#" target="_blank">IMCA Healthcare</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Copyright -->
+    </footer>
+    <!--/ End Footer Area -->
+
+    <!-- JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.0.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/easing.js"></script>
+    <script src="js/colors.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.nav.js"></script>
+    <script src="js/slicknav.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/niceselect.js"></script>
+    <script src="js/tilt.jquery.min.js"></script>
+    <script src="js/owl-carousel.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/steller.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
 </html>
